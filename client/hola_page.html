@@ -1,0 +1,134 @@
+<!-- 
+This is the index HTML web page which you actually see on the browser when you run this application
+Author: Piyush Bajaj
+Topic: UI Assignment 4 <!DOCTYPE html>
+-->
+<html>
+    <title>HOLA - Connecting People</title>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styling_data.css"> 
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="main.js"></script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,visualization&key=AIzaSyBbdS7tMacyQD9C-bmRQhLNiao7kNwA7ug&v=3&callback=get_locations">
+       </script>
+    </head>
+    <body>
+      <div class="container">
+        <div class="options-box">
+          <div class="filter_main_page">
+            <img class="logo_in_main_page" src="../images/logo.png" width="280px" height="220px">
+          </div>
+          <div class="profile_picture_div">
+            <img class="profile-pic" src="http://i65.tinypic.com/15y8x9h.jpg"/>
+            <div class="upload-button">Upload</div>        
+            <input class="photo-upload" type="file" accept="image/*"/>
+          </div>
+          <hr> 
+          <div>
+            <input id="zoom-to-area-text" name="zoom-to-area-text" type="text" placeholder="">
+            <input id="zoom-to-area" type="button" value="Zoom">
+          </div>
+          <div>
+            <input id="show-listings" type="button" value="Show People"> 
+            <input id="hide-listings" type="button" value="Hide People"> 
+            <hr>
+            <span class="text"> Draw shapes to search within it a region!</span>
+            <input id="drawing"  type="button" value="Draw" onclick="return change(this);">
+  
+          </div>
+             
+          <hr>
+          <div>
+            <span class="text"> </span>
+            <select id="max-duration">
+              <option value="10">10 min</option>
+              <option value="15">15 min</option>
+              <option value="30">30 min</option>
+              <option value="60">1 hour</option>
+            </select>
+            <select id="mode">
+              <option value="DRIVING">drive</option>
+              <option value="WALKING">walk</option>
+              <option value="BICYCLING">bike</option>
+              <option value="TRANSIT">transit ride</option>
+            </select>
+            <!--<input id="search-within-time-text" type="text" placeholder="Enter the location "> -->
+            <input id="search-within-time" type="button" value="Go">
+            <div class="fb-login-button" style="position:absolute;top:4%;left:43%;opacity: 0.8;margin-top:23%;display:none" data-max-rows="1" data-size="large" data-button-type="continue_with" +
+            data-show-faces="true" scope="public_profile,email,user_location,user_hometown,user_friends" +
+            onlogin="checkLoginState();" data-auto-logout-link="true" data-use-continue-as="true" ></div>
+            <input id="logout" type="button" value="Logout" >
+            <input name="u_name" type="hidden" >
+          </div> 
+        </div>   
+        <div id="map">       
+        </div>
+      </div>  
+      <script>
+        function statusChangeCallback(response) {
+          //console.log('statusChangeCallback');
+          //console.log(response);
+          if (response.status === 'connected') {
+            testAPI();
+          } else {
+            document.getElementsByName("fb_status").value = "false";
+           // document.getElementById('status').innerHTML = 'Please log ' +
+            //  'into this app.';
+          }
+        }
+        function checkLoginState() {
+          FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+          });
+        }
+        window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1960133210908288',
+          cookie     : true,  // enable cookies to allow the server to access
+                              // the session
+          xfbml      : true,  // parse social plugins on this page
+          version    : 'v2.8' // use graph api version 2.8
+        });
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+          FB.logout(function(response) {
+            document.getElementsByName("fb_status").value = "false"
+            //window.location = "http://localhost:8888/"
+        });
+        };
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      
+        function testAPI() {
+          FB.api('/me', function(response) {
+              console.log('Successful login for: ' + response.name);
+              document.getElementsByName("u_name").value = response.name;
+              console.log(document.getElementsByName("u_name").value)
+              document.getElementsByName("fb_status").value = "true"
+              console.log(document.getElementsByName("fb_status").value)
+              //load_redirect();
+              FB.api('/me/friends', function(response) {
+             //console.log(response);
+              });
+          });
+        }
+        function fbLogoutUser() {
+          FB.getLoginStatus(function(response) {
+              if (response && response.status === 'connected') {
+                  FB.logout(function(response) {
+                      document.getElementsByName("fb_status").value = "false"
+                      document.location.reload();
+                  });
+              }
+          });
+      }
+      </script>
+    </body>
+  </html>

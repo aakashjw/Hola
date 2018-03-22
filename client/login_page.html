@@ -1,0 +1,267 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="styling_data.css"> 
+ <script src="main.js"></script> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  
+</script>
+</head>
+<body>
+    
+<script>
+  function statusChangeCallback(response) {
+    //console.log('statusChangeCallback');
+    //console.log(response);
+    if (response.status === 'connected') {
+      testAPI();
+    } else {
+     // document.getElementById('status').innerHTML = 'Please log ' +
+      //  'into this app.';
+    }
+  }
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1960133210908288',
+    cookie     : true,  // enable cookies to allow the server to access
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  });
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+    FB.logout(function(response) {
+  });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  function testAPI() {
+    //console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '' + response.id + '!';
+        FB.api('/me/friends', function(response) {
+      console.log(response);
+      console.log('Successful login for: ' + response.name);
+    });
+    });
+  }
+  function fbLogoutUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status === 'connected') {
+            FB.logout(function(response) {
+                document.location.reload();
+            });
+        }
+    });
+}
+</script>
+<!-- For Home Page Container  --><!--
+<div class="container_home">
+  <div class="filter">
+    <img class="logo" src="C:\Users\piyus\Documents\UI\UI Halo Project\images\mainlogo.png">
+  </div>
+  <video autoplay loop class="fillWidth">
+      <source src="WEBM/Ground-Zero.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+  </video>
+  <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" +
+    data-show-faces="true" scope="public_profile,email,user_location,user_hometown,user_friends" +
+    onlogin="checkLoginState();" data-auto-logout-link="true" data-use-continue-as="true"></div>
+  <div id="status"></div>
+  <div id="geo-location"></div>
+</div>
+<script>
+  var user_location = document.getElementById("geo-location");
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+      user_location.innerHTML = "Geolocation is not supported by this browser.";
+  }
+  function showPosition(position) {
+      user_location.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+  }
+</script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="styling_data.css"> 
+ <script src="main.js"></script> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  
+</script>
+</head>
+
+<body>
+    <div class="container_home">
+        
+          <div class="filter">
+           <!-- <img class="logo" src="http://i66.tinypic.com/zval34.png">-->
+           <img class="logo" src="../images/logo.png">
+          </div>
+          <div class="tagline">
+            <h1 style="color:indianred; font-size: 60px; opacity:0.9">Let's connect with people around you </h1>
+</div>
+
+        <video autoplay loop class="fillWidth"> 
+            <source src="../images/Ground-Zero.webm" type="video/webm" />
+        </video>
+
+<div class="fb-login-button" style="position:absolute;top:4%;left:43%;opacity: 0.8;margin-top:23%;" data-max-rows="1" data-size="large" data-button-type="continue_with" +
+          data-show-faces="true" scope="public_profile,email,user_location,user_hometown,user_friends" +
+          onlogin="checkLoginState();" data-auto-logout-link="true" data-use-continue-as="true"></div>
+         <div id="status"></div>
+          <!--<video autoplay loop class="fillWidth">
+              <embed width="440" height="420" type="application/x-shockwave-flash" ><br><font size="1"><a href="http://tinypic.com/player.php?v=xd8gbc&s=9">Original Video</a>/font>
+              <source src="http://v9.tinypic.com/player.swf?file=xd8gbc&s=9" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+          </video>
+          <video autoplay loop class="fillWidth">
+            <source src="../images/Ground-Zero.webm" type="video/webm"/>
+          </video>-->
+          <div id="geo-location">
+          </div>
+          <input id="fb_status" name="fb_status" type="hidden">
+          <input id="longitude" name="longitude" type="hidden"/>
+          <input id="latitude" name="latitude" type="hidden"/>
+          <input id="user_name" name="u_name" type="hidden"/>
+        </div>
+        
+    
+<script>
+  function statusChangeCallback(response) {
+    //console.log('statusChangeCallback');
+    //console.log(response);
+    if (response.status === 'connected') {
+      testAPI();
+    } else {
+      document.getElementsByName("fb_status").value = "false";
+     // document.getElementById('status').innerHTML = 'Please log ' +
+      //  'into this app.';
+    }
+  }
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1960133210908288',
+    cookie     : true,  // enable cookies to allow the server to access
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  });
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+    FB.logout(function(response) {
+      document.getElementsByName("fb_status").value = "false"
+      //window.location = "http://localhost:8888/"
+  });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    FB.api('/me', function(response) {
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '' + response.id + '!';
+        console.log('Successful login for: ' + response.name);
+        document.getElementsByName("u_name").value = response.name;
+        document.getElementsByName("fb_status").value = "true"
+        console.log(document.getElementsByName("fb_status").value)
+        load_redirect();
+        FB.api('/me/friends', function(response) {
+       //console.log(response);
+        });
+    });
+  }
+  function fbLogoutUser() {
+    FB.getLoginStatus(function(response) {
+        if (response && response.status === 'connected') {
+            FB.logout(function(response) {
+                document.getElementsByName("fb_status").value = "false"
+                document.location.reload();
+            });
+        }
+    });
+}
+
+function load_redirect(){
+var fbstatus = document.getElementsByName("fb_status").value;
+console.log(fbstatus)
+    if(fbstatus){
+      var user_location = document.getElementById("geo-location");
+        if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          user_location.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      var lat = document.getElementsByName("latitude");
+      var longi = document.getElementsByName("longitude");
+        function showPosition(position) {
+           user_location.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+          
+          lat.value = position.coords.latitude;
+          //console.log(lat)
+          longi.value = position.coords.longitude;
+          //console.log(longi)
+          var uname = document.getElementsByName("u_name").value;
+          var oReq = new XMLHttpRequest();
+          var user_data = "UserName="+ uname +"&latitude="+lat.value+"&longitude="+longi.value
+          oReq.onreadystatechange = function() {
+            if(oReq.readyState == 4 && oReq.status == 200) {
+            console.log(oReq.responseText);
+            }
+          }  
+          oReq.open("POST", "http://localhost:8888/insertall");
+          oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          oReq.send(user_data);
+          var httpReq = new XMLHttpRequest();
+          httpReq.onreadystatechange = function() {
+            if(httpReq.readyState == 4 && httpReq.status == 200) {
+              console.log("getting new page")
+            //console.log(httpReq.responseText);
+            window.location="http://localhost:8888/hola";
+            }
+          } 
+          httpReq.open("GET", "http://localhost:8888/hola");
+          httpReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          httpReq.send();
+          document.getElementsByName("fb_status").value = "false"
+        }
+    }
+  }
+  </script>
+</body>
+</html>
