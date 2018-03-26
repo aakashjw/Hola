@@ -9,5 +9,6 @@ node server/srcServer.js
 
 Quick Preview of the application:
 
-https://s3-us-west-1.amazonaws.com/aakash-wadhwani/screenshots/hola.jpg \n
+https://s3-us-west-1.amazonaws.com/aakash-wadhwani/screenshots/hola.jpg
+
 https://s3-us-west-1.amazonaws.com/aakash-wadhwani/screenshots/profilehola.jpg
